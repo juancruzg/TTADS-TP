@@ -19,16 +19,19 @@
         var id = vm.usuario.id;
         var nombre = vm.usuario.nombre;
 
+        var promise;
+
         if (!id) {
-          $http.put("http://localhost:9000/api/users", { "nombre": nombre }).then(function(result){
-            vm.updateTable();
-          });
+          promise = $http.put("http://localhost:9000/api/users", { "nombre": nombre });
         }
         else {
-          $http.post("http://localhost:9000/api/users", { "id": id, "nombre": nombre }).then(function(result){
-            vm.updateTable();
-          });
+          promise = $http.post("http://localhost:9000/api/users", { "id": id, "nombre": nombre });
         }
+
+        promise.then(function(result){
+          vm.updateTable();
+          vm.cancelUser();
+        });
       }
 
       function deleteUser() {
@@ -37,6 +40,7 @@
         if (id) {
           $http.delete("http://localhost:9000/api/users/" + id).then(function(result){
             vm.updateTable();
+            vm.cancelUser();
           });
         }
       }
