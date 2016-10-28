@@ -1,0 +1,11 @@
+<form class="form-group" action="index.html" method="post">
+  <label>ID</label>
+  <input type="text" ng-model="formularioVm.usuario.id" class="form-control" readonly=""/>
+  <label>Nombre</label>
+  <input type="text" ng-model="formularioVm.usuario.nombre" class="form-control" />
+  <div class="help-block pull-right">
+    <button type="button" ng-click="formularioVm.saveUser()" class="btn btn-primary">Guardar</button>
+    <button type="button" ng-click="formularioVm.cancelUser()" class="btn btn-default">Cancelar</button>
+    <button type="button" ng-click="formularioVm.deleteUser()" class="btn btn-danger">Eliminar</button>
+  </div>
+</form>
