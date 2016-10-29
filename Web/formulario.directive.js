@@ -7,6 +7,7 @@ angular
             templateUrl: 'formulario.html',
             scope:{
               usuario: "=",
+              showForm: "=",
               updateTable: "&"
             },
             bindToController: true,

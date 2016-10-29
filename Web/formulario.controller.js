@@ -31,6 +31,7 @@
         promise.then(function(result){
           vm.updateTable();
           vm.cancelUser();
+          vm.showForm = false;
         });
       }
 
@@ -41,13 +42,17 @@
           $http.delete("http://localhost:9000/api/users/" + id).then(function(result){
             vm.updateTable();
             vm.cancelUser();
+            vm.showForm = false;
           });
+        }
+        else {
+          alert("woooooooops");
         }
       }
 
       function cancelUser() {
-        vm.usuario.id = null;
-        vm.usuario.nombre = null;
+        vm.usuario = {};
+        vm.showForm = false;
       }
     }
 })();

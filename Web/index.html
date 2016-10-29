@@ -9,9 +9,25 @@
   </head>
   <body ng-app="administradorTareasApp">
     <div class="container" ng-controller="usuariosController as userVm">
-      <h1>Usuarios</h1>
       <div class="row">
-        <div class="col-sm-8">
+        <div class="col-sm-12">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <h1>Usuarios</h1>
+            </div>
+            <div class="col-sm-6">
+              <div style="height: 25px;"></div>
+              <button type="button" class="btn btn-primary pull-right" ng-click="userVm.showEmptyForm()">Nuevo usuario <i class="glyphicon glyphicon-plus"></i></button>
+              <div class="input-group">
+                <input type="text" ng-model="userVm.searchBox" class="form-control" />
+                <span class="input-group-btn">
+                  <button type="button" ng-click="userVm.searchUsers()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+                </span>
+              </div>
+            </div>
+          </div>
+
           <table class="tabla-usuarios table table-condensed table-hover">
             <thead>
               <tr>
@@ -27,10 +43,8 @@
             </tbody>
           </table>
         </div>
-        <div class="col-sm-4">
-          <formulario usuario="userVm.selectedUser" update-table="userVm.getUserList()"></formulario>
-        </div>
       </div><!-- row -->
+      <formulario ng-if="userVm.showForm" usuario="userVm.selectedUser" show-form="userVm.showForm" update-table="userVm.getUserList()"></formulario>
     </div><!-- container -->
   </body>
 
