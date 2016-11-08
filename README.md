@@ -28,7 +28,7 @@ Corriendo el comando <strong>node server.js</strong> sobre la raiz del directori
 <li><strong>/api/users/:id</strong> => Elimina un usuario</li>
 <li><strong>/api/tasks/:id</strong> => Elimina un task</li>
 </ul>
-* **QueryString para el search de users:** _?id=number&nombre=string_, ambos campos son opcionales
+**_QueryString para el search de users_:** _?id=number&nombre=string_, ambos campos son opcionales
 ## Requests
 Post users:
 ```json
