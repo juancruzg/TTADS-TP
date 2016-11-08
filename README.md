@@ -1,4 +1,5 @@
-# TTADS: TP Users & Tasks
+﻿# TTADS: TP Users & Tasks
+Primero que nada instalar los módulos de node (<strong>npm install</strong>).
 Corriendo el comando <strong>node server.js</strong> sobre la raiz del directorio se sirve de forma local la WEB, y el API:
 ## Endpoints
 > **GET**
