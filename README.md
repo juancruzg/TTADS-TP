@@ -20,13 +20,13 @@ Corriendo el comando <strong>node server.js</strong> sobre la raiz del directori
 </ul>
 > **PUT**
 <ul>
-<li><strong>PUT - /api/users</strong> => Guarda un nuevo usuario</li>
-<li><strong>PUT - /api/tasks</strong> => Guarda un nuevo task</li>
+<li><strong>/api/users</strong> => Guarda un nuevo usuario</li>
+<li><strong>/api/tasks</strong> => Guarda un nuevo task</li>
 </ul>
 > **DELETE**
 <ul>
-<li><strong>DELETE - /api/users/:id</strong> => Elimina un usuario</li>
-<li><strong>DELETE - /api/tasks/:id</strong> => Elimina un task</li>
+<li><strong>/api/users/:id</strong> => Elimina un usuario</li>
+<li><strong>/api/tasks/:id</strong> => Elimina un task</li>
 </ul>
 * **QueryString para el search de users:** _?id=number&nombre=string_, ambos campos son opcionales
 ## Requests
