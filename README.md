@@ -1,6 +1,6 @@
-## TTADS: TP Users & Tasks
+# TTADS: TP Users & Tasks
 Corriendo el comando <strong>node server.js</strong> sobre la raiz del directorio se sirve de forma local la WEB, y el API:
-# Endpoints
+## Endpoints
 > **GET**
 <ul>
 <li><strong>/ =></strong> Sobre la raiz está hosteada la web que permite mediante su interfaz agregar, modificar y eliminar usuarios</li>
@@ -28,10 +28,8 @@ Corriendo el comando <strong>node server.js</strong> sobre la raiz del directori
 <li><strong>DELETE - /api/users/:id</strong> => Elimina un usuario</li>
 <li><strong>DELETE - /api/tasks/:id</strong> => Elimina un task</li>
 </ul>
-
 * **QueryString para el search de users:** _?id=number&nombre=string_, ambos campos son opcionales
-
-# Requests
+## Requests
 Post users:
 ```json
 {"id": number, "nombre": text}
