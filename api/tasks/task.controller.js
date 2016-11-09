@@ -63,7 +63,7 @@ exports.saveTask = function (req, res) {
     .catch(function(error) {
         if(error instanceof db.Sequelize.ForeignKeyConstraintError) {
           res.status(500);
-          res.json({ "Message": "El usuario no existe" });
+          res.json({ "Message": "Error interno" });
           return;
         }
     });
