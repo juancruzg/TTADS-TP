@@ -27,6 +27,13 @@ exports.getTasks = function(req, res) {
     }
 
     res.json(retorno);
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
   });
 }
 
@@ -52,7 +59,21 @@ exports.saveTask = function (req, res) {
       // ...y guarda
       task.save().then(function (task) {
         res.json({ "Message": "Updated", "Task": task });
+      })
+      .catch(function(error) {
+        if(error) {
+          res.status(500);
+          res.json({ "Message": "El usuario no existe" });
+          return;
+        }
       });
+    })
+    .catch(function(error) {
+      if(error) {
+        res.status(500);
+        res.json({ "Message": "El usuario no existe" });
+        return;
+      }
     });
   }
   else if (method === "PUT") {
@@ -79,6 +100,13 @@ exports.deleteTask = function(req, res) {
     else {
       res.status(404);
       res.json({ "Message": "Task not found" });
+      return;
+    }
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
       return;
     }
   });
@@ -115,5 +143,12 @@ exports.searchTasks = function(req, res) {
     }
 
     res.json(retorno);
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
   });
 }
