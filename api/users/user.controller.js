@@ -122,7 +122,7 @@ exports.searchUsers = function(req, res) {
     query.id = id;
 
   if (username != null)
-    query.username = { $like: username + "%" };
+    query.username = { $like: "%" + username + "%" };
 
   // Busco los usuarios en la DB
   db.User.findAll({ where: query}).then(function (user) {
