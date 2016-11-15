@@ -1,56 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Administrador de tareas</title>
+<!doctype html>
+<html ng-app="administradorTareasApp">
+<head>
 
-    <link rel="stylesheet" href="./bootstrap.min.css" />
+  <link rel="stylesheet" href="./content/bootstrap.min.css" />
+  <link rel="stylesheet" href="./content/menu.css" />
 
-  </head>
-  <body ng-app="administradorTareasApp">
-    <div class="container" ng-controller="usuariosController as userVm">
-      <div class="row">
-        <div class="col-sm-12">
+</head>
+<body ui-view>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">JNLM APP</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <!--<li class="active"><a href="#">Home</a></li>-->
+        <li><a href="#">Tareas</a></li>
+        <li><a href="#">Usuarios</a></li>
+      </ul>
+    </div>
+  </nav>
 
-          <div class="row">
-            <div class="col-sm-6">
-              <h1>Usuarios</h1>
-            </div>
-            <div class="col-sm-6">
-              <div style="height: 25px;"></div>
-              <button type="button" class="btn btn-primary pull-right" ng-click="userVm.showEmptyForm()">Nuevo usuario <i class="glyphicon glyphicon-plus"></i></button>
-              <div class="input-group">
-                <input type="text" ng-model="userVm.searchBox" class="form-control" />
-                <span class="input-group-btn">
-                  <button type="button" ng-click="userVm.searchUsers()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-                </span>
-              </div>
-            </div>
-          </div>
+</body>
 
-          <table class="tabla-usuarios table table-condensed table-hover">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="user in userVm.usuarios track by $index" ng-click="userVm.selectUser(user)">
-                <td>{{user.id}}</td>
-                <td>{{user.username}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div><!-- row -->
-      <formulario ng-if="userVm.showForm" usuario="userVm.selectedUser" show-form="userVm.showForm" update-table="userVm.getUserList()"></formulario>
-    </div><!-- container -->
-  </body>
 
-  <script src="./angular.min.js" charset="utf-8"></script>
-  <script src="./user-list.controller.js"></script>
-  <script src="./formulario.controller.js"></script>
+<script src="./lib/angular.min.js" charset="utf-8"></script>
+<script src="./index.controller.js"></script>
+<script src="./controllers/usuario/formUsuario.controller.js"></script>
+<script src="./controllers/usuario/formUsuario.directive.js"></script>
+<script src="./lib/ui-router.min.js"></script>
 
-  <script src="./formulario.directive.js"></script>
 </html>

@@ -4,7 +4,7 @@ angular
     function formularioDirective(){
         return{
             restrict: 'E',
-            templateUrl: 'formulario.html',
+            templateUrl: 'controllers/usuario/formUsuario.html',
             scope:{
               usuario: "=",
               showForm: "=",
