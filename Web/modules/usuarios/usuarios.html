@@ -1,0 +1,49 @@
+<div class="container" >
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <h1>Usuarios</h1>
+        </div>
+        <div class="col-sm-6">
+          <div style="height: 25px;"></div>
+          <button type="button" class="btn btn-primary pull-right" ng-click="userVm.showEmptyForm()">Nuevo usuario <i class="glyphicon glyphicon-plus"></i></button>
+          <div class="input-group">
+            <input type="text" ng-model="userVm.searchBox" class="form-control" />
+            <span class="input-group-btn">
+              <button type="button" ng-click="userVm.searchUsers()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <table class="tabla-usuarios table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in userVm.usuarios track by $index" ng-click="userVm.selectUser(user)">
+            <td>{{user.id}}</td>
+            <td>{{user.username}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- row -->
+  <div ng-if="userVm.showForm">
+    <hr />
+    <label>ID</label>
+    <input type="text" ng-model="userVm.selectedUser.id" class="form-control" readonly=""/>
+    <label>Nombre</label>
+    <input type="text" ng-model="userVm.selectedUser.nombre" class="form-control" />
+    <div class="help-block pull-right">
+      <button type="button" ng-click="userVm.saveUser()" class="btn btn-primary">Guardar</button>
+      <button type="button" ng-click="userVm.showEmptyForm()" class="btn btn-default">Cancelar</button>
+      <button type="button" ng-click="userVm.deleteUser()" class="btn btn-danger">Eliminar</button>
+    </div>
+  </div>
+</div><!-- container -->

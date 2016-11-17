@@ -1,0 +1,52 @@
+<div class="container" ng-controller="tareasController as taskVm">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="row">
+        <div class="col-sm-6">
+          <header>
+            <h1>Tareas</h1>
+            <p class="tagline">de {{taskVm.selectedUser}}</p>
+        </header>
+        </div>
+        <div class="col-sm-6">
+          <div style="height: 25px;"></div>
+          <button type="button" class="btn btn-primary pull-right" ng-click="taskVm.showEmptyForm()">Nueva tarea <i class="glyphicon glyphicon-plus"></i></button>
+          <div class="input-group">
+            <input type="text" ng-model="taskVm.searchBox" class="form-control" />
+            <span class="input-group-btn">
+              <button type="button" ng-click="taskVm.searchTasks()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <table class="tabla-tareas table table-condensed table-hover">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="tarea in taskVm.tareas track by $index" ng-click="taskVm.selectTask(task)">
+            <td>{{tarea.id}}</td>
+            <td>{{tarea.title}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div><!-- row -->
+  <div ng-if="taskVm.showForm">
+    <hr />
+    <label>ID</label>
+    <input type="text" ng-model="taskVm.sekectedTask.id" class="form-control" readonly=""/>
+    <label>Nombre</label>
+    <input type="text" ng-model="taskVm.selectedtask.title" class="form-control" />
+    <div class="help-block pull-right">
+      <button type="button" ng-click="taskVm.saveTask()" class="btn btn-primary">Guardar</button>
+      <button type="button" ng-click="taskVm.cancelTask()" class="btn btn-default">Cancelar</button>
+      <button type="button" ng-click="taskVm.deleteTask()" class="btn btn-danger">Eliminar</button>
+    </div>
+  </div>
+</div><!-- container -->

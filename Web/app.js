@@ -1,18 +1,16 @@
-(function() {
-    'use strict';
+var app = angular.module('administradorTareasApp', ['ngRoute']);
+app.config(['$routeProvider','$urlRouterProvider',function($routeProvider, $urlRouterProvider) {
+  //$urlRouterProvider.otherwise('/index');
 
-    // Create module and controller
-    angular
-        .module('administradorTareasApp', ['ui.router'])
-        .controller('administradorTareasApp',administradorTareasApp);
-
-
-    administradorTareasApp.$inject = ["$http"];
-
-    function administradorTareasApp($http) {
-
-
-
-
-    }
-})();
+  //$stateProvider.state('index', {
+  //    url: '/',
+  //    templateUrl: 'index.html'
+  //})
+  $routeProvider.when('users', {
+        //url: '/users',
+        //templateUrl: '/modules/usuarios/usuarios.html',
+        template: '</br></br></br></br></br></br><h1>HOLAAAAAAAAAAAAAAAA mundo</h1>',
+        controller: 'usuariosController',
+        controllerAs: 'userVm'
+  });
+}]);

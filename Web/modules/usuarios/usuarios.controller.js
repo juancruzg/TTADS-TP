@@ -20,6 +20,8 @@
       vm.getUserList = getUserList;
       vm.showEmptyForm = showEmptyForm;
       vm.searchUsers = searchUsers;
+      vm.saveUser = saveUser;
+      vm.deleteUser = deleteUser;
 
       vm.getUserList();
 
@@ -58,6 +60,39 @@
           if (error.status === 404)
             vm.usuarios = [];
         });
+      }
+
+      function saveUser() {
+        var id = vm.usuario.id;
+        var nombre = vm.usuario.nombre;
+
+        var promise;
+
+        if (!id) {
+          promise = $http.put("http://localhost:9000/api/users", { "nombre": nombre });
+        }
+        else {
+          promise = $http.post("http://localhost:9000/api/users", { "id": id, "nombre": nombre });
+        }
+
+        promise.then(function(result){
+          vm.getUserList();
+          vm.showForm = false;
+        });
+      }
+
+      function deleteUser() {
+        var id = vm.usuario.id;
+
+        if (id) {
+          $http.delete("http://localhost:9000/api/users/" + id).then(function(result){
+            vm.getUserList();
+            vm.showForm = false;
+          });
+        }
+        else {
+          alert("woooooooops");
+        }
       }
     }
 })();
