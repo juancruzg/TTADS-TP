@@ -32,9 +32,11 @@ exports.getTasks = function(req, res) {
 
 exports.saveTask = function (req, res) {
   var id = req.body.id;
-  var title = req.body.titulo;
+  var title = req.body.title;
   var method = req.method;
-  var userId = req.body.idUsuario;
+  var userId = req.body.userId;
+
+  console.log(req.body);
 
   if (method === "POST"){
     // Busca por id

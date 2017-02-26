@@ -3,7 +3,7 @@
 
     // Create module and controller
     angular
-        .module('administradorTareasApp', [])
+        .module('administradorTareasApp')
         .controller('tareasController',tareasController);
 
 
@@ -26,7 +26,7 @@
       vm.getTaskList();
 
       function getTaskList() {
-        $http.get("http://localhost:9000/api/"+ vm.selectedUser.id + "/tasks").then(function (result) {
+        $http.get("http://localhost:9000/api/users/"+ 1 + "/tasks").then(function (result) {
           var arrayTareas = [];
 
           result.data.usuarios.forEach(function(tarea) {
@@ -47,7 +47,7 @@
         vm.selectedTask = {};
       }
 
-      /*function searchTasks() {
+      function searchTasks() {
         $http.get("http://localhost:9000/api/users/search/?nombre=" + vm.searchBox).then(function (result) {
           var arrayUsuarios = [];
 
@@ -60,7 +60,7 @@
           if (error.status === 404)
             vm.usuarios = [];
         });
-      }*/
+      }
 
       function saveTask() {
         var id = vm.tarea.id;

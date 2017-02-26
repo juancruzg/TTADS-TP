@@ -3,9 +3,8 @@
 
     // Create module and controller
     angular
-        .module('administradorTareasApp', [])
+        .module('administradorTareasApp')
         .controller('usuariosController',usuariosController);
-
 
     usuariosController.$inject = ["$http"];
 
@@ -63,8 +62,8 @@
       }
 
       function saveUser() {
-        var id = vm.usuario.id;
-        var nombre = vm.usuario.nombre;
+        var id = vm.selectedUser.id;
+        var nombre = vm.selectedUser.nombre;
 
         var promise;
 
@@ -82,7 +81,7 @@
       }
 
       function deleteUser() {
-        var id = vm.usuario.id;
+        var id = vm.selectedUser.id;
 
         if (id) {
           $http.delete("http://localhost:9000/api/users/" + id).then(function(result){
