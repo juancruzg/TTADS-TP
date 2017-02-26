@@ -29,6 +29,7 @@
           <tr ng-repeat="user in userVm.usuarios track by $index" ng-click="userVm.selectUser(user)">
             <td>{{user.id}}</td>
             <td>{{user.username}}</td>
+            <td><a ui-sref="tasks({id:user.id})"><button type="button" class="btn btn-default pull-right">Ver tareas</button></a></td>
           </tr>
         </tbody>
       </table>

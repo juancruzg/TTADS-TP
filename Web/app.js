@@ -12,7 +12,7 @@ app.config(function($stateProvider) {
   var tasks = {
       name: "tasks",
       templateUrl: './modules/tareas/tareas.html',
-      url:"/tasks",
+      url:"/tasks/:id",
       controller: 'tareasController',
       controllerAs: 'taskVm'
   }

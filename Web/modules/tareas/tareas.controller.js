@@ -4,13 +4,15 @@
     // Create module and controller
     angular
         .module('administradorTareasApp')
-        .controller('tareasController',tareasController);
+        .controller('tareasController', tareasController);
 
 
-    tareasController.$inject = ["$http"];
+    tareasController.$inject = ["$http", "$stateParams"];
 
-    function tareasController($http) {
+    function tareasController($http, $stateParams) {
       var vm = this;
+
+      selectUser($stateParams.id);
 
       vm.tareas = [];
       vm.selectedTask = {};
@@ -25,11 +27,24 @@
 
       vm.getTaskList();
 
+      function selectUser(userId) {
+        $http.get("http://localhost:9000/api/users/"+ userId).then(function (result) {
+          var usuarios = result.data.usuarios;
+
+          if (usuarios.length === 0)
+            vm.selectedUser = {"id": 0, "nombre": "Usuario no encontrado"};
+          else if (usuarios.length > 1)
+            vm.selectedUser = {"id": 0, "nombre": "Usuario no encontrado"};
+          else
+            vm.selectedUser = {"id": usuarios[0].id, "nombre": usuarios[0].username};
+        });
+      }
+
       function getTaskList() {
-        $http.get("http://localhost:9000/api/users/"+ 1 + "/tasks").then(function (result) {
+        $http.get("http://localhost:9000/api/users/"+ $stateParams.id + "/tasks").then(function (result) {
           var arrayTareas = [];
 
-          result.data.usuarios.forEach(function(tarea) {
+          result.data.tasks.forEach(function(tarea) {
             arrayTareas.push({ "title": tarea.title, "id": tarea.id });
           });
 
