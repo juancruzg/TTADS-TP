@@ -18,6 +18,7 @@
       vm.selectUser = selectUser;
       vm.getUserList = getUserList;
       vm.showEmptyForm = showEmptyForm;
+      vm.toggleForm = toggleForm;
       vm.searchUsers = searchUsers;
       vm.saveUser = saveUser;
       vm.deleteUser = deleteUser;
@@ -38,12 +39,16 @@
 
       function selectUser(user) {
         vm.selectedUser = { "id": user.id, "nombre": user.username };
-        vm.showForm = true;
+        toggleForm();
       }
 
       function showEmptyForm() {
         vm.showForm = true;
         vm.selectedUser = {};
+      }
+
+      function toggleForm() {
+        vm.showForm = !vm.showForm;
       }
 
       function searchUsers() {
@@ -76,7 +81,7 @@
 
         promise.then(function(result){
           vm.getUserList();
-          vm.showForm = false;
+          toggleForm();
         });
       }
 
@@ -86,7 +91,7 @@
         if (id) {
           $http.delete("http://localhost:9000/api/users/" + id).then(function(result){
             vm.getUserList();
-            vm.showForm = false;
+            toggleForm();
           });
         }
         else {
