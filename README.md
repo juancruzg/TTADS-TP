@@ -31,6 +31,7 @@ Corriendo el comando <strong>node server.js</strong> sobre la raiz del directori
 <li><strong>/api/tasks/:id</strong> => Elimina un task</li>
 </ul>
 >**_QueryString para el search de users_:** _?id=number&nombre=string_, ambos campos son opcionales
+<br>
 >**_QueryString para el search de tasks_:** _?id=number&title=string_, ambos campos son opcionales
 
 ## Requests
