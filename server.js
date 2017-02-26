@@ -14,5 +14,9 @@ app.use('/api/tasks', require('./api/tasks'));
 // Sirvo la web en /
 app.use('/', express.static("./web"));
 
+/*app.get('*', function (req, res) {
+    res.sendFile(__dirname + "/web/index.html");
+});*/
+
 app.listen(port);
 console.log('Magic happens on port ' + port);

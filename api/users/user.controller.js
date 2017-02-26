@@ -27,6 +27,13 @@ exports.getUsers = function(req, res) {
     }
 
     res.json(retorno);
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
   });
 }
 
@@ -51,13 +58,34 @@ exports.saveUser = function (req, res) {
       // ...y guarda
       user.save().then(function (user) {
         res.json({ "Message": "Updated", "User": user });
+      })
+      .catch(function(error) {
+        if(error) {
+          res.status(500);
+          res.json({ "Message": "El usuario no existe" });
+          return;
+        }
       });
+    })
+    .catch(function(error) {
+      if(error) {
+        res.status(500);
+        res.json({ "Message": "El usuario no existe" });
+        return;
+      }
     });
   }
   else if (method === "PUT") {
     // Intenta agregar un nuevo usuario
     db.User.create({ username: username }).then(function (user) {
       res.json({ "Message": "Created", "User": user });
+    })
+    .catch(function(error) {
+      if(error) {
+        res.status(500);
+        res.json({ "Message": "El usuario no existe" });
+        return;
+      }
     });
   }
 }
@@ -71,6 +99,13 @@ exports.deleteUser = function(req, res) {
     else {
       res.status(404);
       res.json({ "Message": "User not found" });
+      return;
+    }
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
       return;
     }
   });
@@ -87,7 +122,7 @@ exports.searchUsers = function(req, res) {
     query.id = id;
 
   if (username != null)
-    query.username = { $like: username + "%" };
+    query.username = { $like: "%" + username + "%" };
 
   // Busco los usuarios en la DB
   db.User.findAll({ where: query}).then(function (user) {
@@ -107,6 +142,13 @@ exports.searchUsers = function(req, res) {
     }
 
     res.json(retorno);
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
   });
 }
 
@@ -130,6 +172,13 @@ exports.getTasks = function(req, res) {
     }
 
     res.json(retorno);
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
   });
 }
 
@@ -138,5 +187,12 @@ exports.countTasks = function(req, res) {
 
   db.Task.count({ where: { UserId: id } }).then(function(number) {
     res.json({ "Count": number })
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
   });
 }
