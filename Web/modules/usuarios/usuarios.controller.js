@@ -39,7 +39,7 @@
 
       function selectUser(user) {
         vm.selectedUser = { "id": user.id, "nombre": user.username };
-        toggleForm();
+        vm.showForm = true;
       }
 
       function showEmptyForm() {

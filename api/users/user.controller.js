@@ -196,3 +196,48 @@ exports.countTasks = function(req, res) {
     }
   });
 }
+
+exports.searchUserTasks = function(req, res) {
+  var userId = req.params.id;
+  var taskId = req.query.id;
+  var title = req.query.titulo;
+
+  var query = {};
+
+  // Validaciones
+  if (taskId != null)
+    query.id = taskId;
+
+  if (title != null)
+    query.title = { $like: "%" + title + "%" };
+
+  if (userId != null)
+    query.UserId = userId;
+
+  // Busco los usuarios en la DB
+  db.Task.findAll( { include: [db.User], where: query} ).then(function (task) {
+    // Creo un array para devolver los resultados
+    var retorno = { tasks: [] };
+
+    // Recorro el resultado obtenido de la DB y voy agregando al array de retorno
+    task.forEach(function (each) {
+      retorno.tasks.push(each);
+    });
+
+    // Si no hay ningún usuario devuelvo 404
+    if (retorno.tasks.length === 0) {
+      res.status(404);
+      res.json({ "Message": "Task(s) not found" });
+      return;
+    }
+
+    res.json(retorno);
+  })
+  .catch(function(error) {
+    if(error) {
+      res.status(500);
+      res.json({ "Message": "El usuario no existe" });
+      return;
+    }
+  });
+}

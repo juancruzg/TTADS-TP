@@ -24,6 +24,7 @@
       vm.searchTasks = searchTasks;
       vm.saveTask = saveTask;
       vm.deleteTask = deleteTask;
+      vm.toggleForm = toggleForm;
 
       vm.getTaskList();
 
@@ -37,6 +38,9 @@
             vm.selectedUser = {"id": 0, "nombre": "Usuario no encontrado"};
           else
             vm.selectedUser = {"id": usuarios[0].id, "nombre": usuarios[0].username};
+        },
+        function(){
+          vm.selectedUser = {"id": 0, "nombre": "Usuario no encontrado"};
         });
       }
 
@@ -49,6 +53,9 @@
           });
 
           vm.tareas = arrayTareas;
+        },
+        function() {
+          vm.tareas = [];
         });
       }
 
@@ -62,25 +69,29 @@
         vm.selectedTask = {};
       }
 
-      function searchTasks() {
-        $http.get("http://localhost:9000/api/users/search/?nombre=" + vm.searchBox).then(function (result) {
-          var arrayUsuarios = [];
+      function toggleForm() {
+        vm.showForm = !vm.showForm;
+      }
 
-          result.data.usuarios.forEach(function(usuario) {
-            arrayUsuarios.push({ "username": usuario.username, "id": usuario.id });
+      function searchTasks() {
+        $http.get("http://localhost:9000/api/users/"+ $stateParams.id + "/tasks/search/?titulo=" + vm.searchBox).then(function (result) {
+          var arrayTareas = [];
+
+          result.data.tasks.forEach(function(tarea) {
+            arrayTareas.push({ "title": tarea.title, "id": tarea.id });
           });
 
-          vm.usuarios = arrayUsuarios;
+          vm.tareas = arrayTareas;
         }, function (error) {
           if (error.status === 404)
-            vm.usuarios = [];
+            vm.tareas = [];
         });
       }
 
       function saveTask() {
-        var id = vm.tarea.id;
-        var titulo = vm.tarea.titulo;
-
+        var id = vm.selectedTask.id;
+        var titulo = vm.selectedTask.title;
+        console.log({"id": id, "título": titulo});
         var promise;
 
         if (!id) {
@@ -92,17 +103,17 @@
 
         promise.then(function(result){
           vm.getTaskList();
-          vm.showForm = false;
+          toggleForm();
         });
       }
 
       function deleteTask() {
-        var id = vm.tarea.id;
+        var id = vm.selectedTask.id;
 
         if (id) {
           $http.delete("http://localhost:9000/api/tasks/" + id).then(function(result){
             vm.getTaskList();
-            vm.showForm = false;
+            toggleForm();
           });
         }
         else {

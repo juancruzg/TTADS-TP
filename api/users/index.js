@@ -17,6 +17,8 @@ router.delete("/:id", controller.deleteUser);
 
 router.get("/:id/tasks", controller.getTasks);
 
+router.get("/:id/tasks/search", controller.searchUserTasks);
+
 router.get("/:id/tasks/count", controller.countTasks);
 
 module.exports = router;

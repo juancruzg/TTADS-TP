@@ -12,12 +12,14 @@
         <div class="col-sm-6">
           <div style="height: 25px;"></div>
           <button type="button" class="btn btn-primary pull-right" ng-click="taskVm.showEmptyForm()">Nueva tarea <i class="glyphicon glyphicon-plus"></i></button>
-          <div class="input-group">
-            <input type="text" ng-model="taskVm.searchBox" class="form-control" />
-            <span class="input-group-btn">
-              <button type="button" ng-click="taskVm.searchTasks()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-            </span>
-          </div>
+          <form ng-submit="taskVm.searchTasks()">
+            <div class="input-group">
+              <input type="text" ng-model="taskVm.searchBox" class="form-control" />
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+              </span>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -29,7 +31,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="tarea in taskVm.tareas track by $index" ng-click="taskVm.selectTask(task)">
+          <tr ng-repeat="tarea in taskVm.tareas track by $index" ng-click="taskVm.selectTask(tarea)">
             <td>{{tarea.id}}</td>
             <td>{{tarea.title}}</td>
           </tr>
@@ -38,15 +40,17 @@
     </div>
   </div><!-- row -->
   <div ng-if="taskVm.showForm">
-    <hr />
-    <label>ID</label>
-    <input type="text" ng-model="taskVm.sekectedTask.id" class="form-control" readonly=""/>
-    <label>Nombre</label>
-    <input type="text" ng-model="taskVm.selectedtask.title" class="form-control" />
-    <div class="help-block pull-right">
-      <button type="button" ng-click="taskVm.saveTask()" class="btn btn-primary">Guardar</button>
-      <button type="button" ng-click="taskVm.cancelTask()" class="btn btn-default">Cancelar</button>
-      <button type="button" ng-click="taskVm.deleteTask()" class="btn btn-danger">Eliminar</button>
-    </div>
+    <form ng-submit="taskVm.saveTask()">
+      <hr />
+      <label>ID</label>
+      <input type="text" ng-model="taskVm.selectedTask.id" class="form-control" readonly=""/>
+      <label>Nombre</label>
+      <input type="text" ng-model="taskVm.selectedTask.title" class="form-control" />
+      <div class="help-block pull-right">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <button type="button" ng-click="taskVm.toggleForm()" class="btn btn-default">Cancelar</button>
+        <button type="button" ng-click="taskVm.deleteTask()" class="btn btn-danger">Eliminar</button>
+      </div>
+    </form>
   </div>
 </div><!-- container -->

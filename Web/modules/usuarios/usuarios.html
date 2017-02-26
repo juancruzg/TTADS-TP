@@ -9,12 +9,14 @@
         <div class="col-sm-6">
           <div style="height: 25px;"></div>
           <button type="button" class="btn btn-primary pull-right" ng-click="userVm.showEmptyForm()">Nuevo usuario <i class="glyphicon glyphicon-plus"></i></button>
-          <div class="input-group">
-            <input type="text" ng-model="userVm.searchBox" class="form-control" />
-            <span class="input-group-btn">
-              <button type="button" ng-click="userVm.searchUsers()" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
-            </span>
-          </div>
+          <form ng-submit="userVm.searchUsers()">
+            <div class="input-group">
+              <input type="text" ng-model="userVm.searchBox" class="form-control" />
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></button>
+              </span>
+            </div>
+          </form>
         </div>
       </div>
 
