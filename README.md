@@ -10,6 +10,7 @@ Corriendo el comando <strong>node server.js</strong> sobre la raiz del directori
 <li><strong>/api/users/search/</strong> => Busca usuarios usando querystring*</li>
 <li><strong>/api/users/:id/tasks</strong> => Devuelve un array de tareas para un usuario específico</li>
 <li><strong>/api/users/:id/tasks/count</strong> => Devuelve la cantidad de tareas que tiene el usuario</li>
+<li><strong>/api/users/:id/tasks/search</strong> => Busca tasks de un usuario usando querystring*</li>
 <li><strong>/api/tasks</strong> => Devuelve los datos de todos los tasks</li>
 <li><strong>/api/tasks/:id</strong> => Devuelve los datos de un task específico</li>
 </ul>
@@ -30,6 +31,7 @@ Corriendo el comando <strong>node server.js</strong> sobre la raiz del directori
 <li><strong>/api/tasks/:id</strong> => Elimina un task</li>
 </ul>
 >**_QueryString para el search de users_:** _?id=number&nombre=string_, ambos campos son opcionales
+>**_QueryString para el search de tasks_:** _?id=number&title=string_, ambos campos son opcionales
 
 ## Requests
 
