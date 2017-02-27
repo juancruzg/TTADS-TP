@@ -25,6 +25,7 @@
       vm.saveTask = saveTask;
       vm.deleteTask = deleteTask;
       vm.toggleForm = toggleForm;
+      vm.toggleDone = toggleDone;
 
       vm.getTaskList();
 
@@ -49,7 +50,7 @@
           var arrayTareas = [];
 
           result.data.tasks.forEach(function(tarea) {
-            arrayTareas.push({ "title": tarea.title, "id": tarea.id });
+            arrayTareas.push({ "title": tarea.title, "id": tarea.id, "done": tarea.done === null ? false : tarea.done });
           });
 
           vm.tareas = arrayTareas;
@@ -78,7 +79,7 @@
           var arrayTareas = [];
 
           result.data.tasks.forEach(function(tarea) {
-            arrayTareas.push({ "title": tarea.title, "id": tarea.id });
+            arrayTareas.push({ "title": tarea.title, "id": tarea.id, "done": tarea.done === null ? false : tarea.done });
           });
 
           vm.tareas = arrayTareas;
@@ -95,7 +96,7 @@
         var promise;
 
         if (!id) {
-          promise = $http.put("http://localhost:9000/api/tasks", { "title": titulo, "userId": vm.selectedUser.id });
+          promise = $http.put("http://localhost:9000/api/tasks", { "title": titulo, "userId": vm.selectedUser.id, "done": false });
         }
         else {
           promise = $http.post("http://localhost:9000/api/tasks", { "id": id, "title": titulo, "userId": vm.selectedUser.id });
@@ -119,6 +120,14 @@
         else {
           alert("woooooooops");
         }
+      }
+
+      function toggleDone(task) {
+        var params = {"id": task.id, "done": task.done}
+
+        $http.post("http://localhost:9000/api/tasks", params).then(function() {
+          
+        });
       }
     }
 })();

@@ -28,12 +28,18 @@
           <tr>
             <th>ID</th>
             <th>Nombre</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="tarea in taskVm.tareas track by $index" ng-click="taskVm.selectTask(tarea)">
+          <tr ng-repeat="tarea in taskVm.tareas track by $index" ng-click="taskVm.selectTask(tarea)" ng-style="tarea.done && {'text-decoration': 'line-through'}">
             <td>{{tarea.id}}</td>
             <td>{{tarea.title}}</td>
+            <td>
+              <div class="checkbox">
+                <label><input type="checkbox" ng-click="taskVm.toggleDone(tarea); $event.stopPropagation()" ng-model="tarea.done"></label>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table>

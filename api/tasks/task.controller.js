@@ -40,6 +40,7 @@ exports.getTasks = function(req, res) {
 exports.saveTask = function (req, res) {
   var id = req.body.id;
   var title = req.body.title;
+  var done = req.body.done;
   var method = req.method;
   var userId = req.body.userId;
 
@@ -57,6 +58,9 @@ exports.saveTask = function (req, res) {
 
       // Si lo encuentra, actualiza los datos necesarios...
       task.title = title;
+
+      if (done != undefined)
+        task.done = done;
 
       // ...y guarda
       task.save().then(function (task) {
@@ -80,7 +84,7 @@ exports.saveTask = function (req, res) {
   }
   else if (method === "PUT") {
     // Intenta agregar un nuevo usuario
-    db.Task.create({ title: title, UserId: userId }).then(function (task) {
+    db.Task.create({ title: title, UserId: userId, done: done }).then(function (task) {
       res.json({ "Message": "Created", "Task": task });
     })
     .catch(function(error) {
