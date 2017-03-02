@@ -75,7 +75,12 @@
       }
 
       function searchTasks() {
-        $http.get("http://localhost:9000/api/users/"+ $stateParams.id + "/tasks/search/?titulo=" + vm.searchBox).then(function (result) {
+        var filter = "";
+
+        if (vm.searchBox)
+          filter = vm.searchBox;
+
+        $http.get("http://localhost:9000/api/users/"+ $stateParams.id + "/tasks/search/?titulo=" + filter).then(function (result) {
           var arrayTareas = [];
 
           result.data.tasks.forEach(function(tarea) {
@@ -126,7 +131,7 @@
         var params = {"id": task.id, "done": task.done}
 
         $http.post("http://localhost:9000/api/tasks", params).then(function() {
-          
+
         });
       }
     }

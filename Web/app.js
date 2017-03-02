@@ -1,6 +1,12 @@
 var app = angular.module('administradorTareasApp', ['ui.router']);
 
 app.config(function($stateProvider) {
+  var index = {
+      name: "index",
+      url:"/index",
+      template: "<h1>Bienvenido</h1>"
+  }
+
   var users = {
       name: "users",
       templateUrl: './modules/usuarios/usuarios.html',
@@ -17,5 +23,5 @@ app.config(function($stateProvider) {
       controllerAs: 'taskVm'
   }
 
-  $stateProvider.state(users).state(tasks);
+  $stateProvider.state(index).state(users).state(tasks);
 });

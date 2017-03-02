@@ -128,8 +128,8 @@ exports.searchTasks = function(req, res) {
   if (id != null)
     query.id = id;
 
-  if (title != null)
-    query.title = { $like: title + "%" };
+  if (title != null && title != "")
+    query.title = { $like: "%" + title + "%" };
 
   // Busco los usuarios en la DB
   db.Task.findAll( { include: [db.User], where: query} ).then(function (task) {

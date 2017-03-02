@@ -20,6 +20,21 @@
         </div>
       </div>
 
+      <div ng-if="userVm.showForm">
+        <form ng-submit="userVm.saveUser()">
+          <hr />
+          <label>ID</label>
+          <input type="text" ng-model="userVm.selectedUser.id" class="form-control" readonly=""/>
+          <label>Nombre</label>
+          <input type="text" ng-model="userVm.selectedUser.nombre" class="form-control" id="nombre" />
+          <div class="help-block pull-right">
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <button type="button" ng-click="userVm.deleteUser()" class="btn btn-danger">Eliminar</button>
+            <button type="button" ng-click="userVm.toggleForm()" class="btn btn-default">Cancelar</button>
+          </div>
+        </form>
+      </div>
+
       <table class="tabla-usuarios table table-condensed table-hover">
         <thead>
           <tr>
@@ -38,18 +53,7 @@
       </table>
     </div>
   </div><!-- row -->
-  <div ng-if="userVm.showForm">
-    <form ng-submit="userVm.saveUser()">
-      <hr />
-      <label>ID</label>
-      <input type="text" ng-model="userVm.selectedUser.id" class="form-control" readonly=""/>
-      <label>Nombre</label>
-      <input type="text" ng-model="userVm.selectedUser.nombre" class="form-control" />
-      <div class="help-block pull-right">
-        <button type="submit" class="btn btn-primary">Guardar</button>
-        <button type="button" ng-click="userVm.toggleForm()" class="btn btn-default">Cancelar</button>
-        <button type="button" ng-click="userVm.deleteUser()" class="btn btn-danger">Eliminar</button>
-      </div>
-    </form>
-  </div>
+
+  <hr>
+  <a ui-sref="index"><button type="button" class="btn btn-primary">Volver</button></a>
 </div><!-- container -->

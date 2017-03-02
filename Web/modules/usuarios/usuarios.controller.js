@@ -6,9 +6,9 @@
         .module('administradorTareasApp')
         .controller('usuariosController',usuariosController);
 
-    usuariosController.$inject = ["$http"];
+    usuariosController.$inject = ["$http", "$document"];
 
-    function usuariosController($http) {
+    function usuariosController($http, $document) {
       var vm = this;
 
       vm.usuarios = [];
@@ -52,7 +52,12 @@
       }
 
       function searchUsers() {
-        $http.get("http://localhost:9000/api/users/search/?nombre=" + vm.searchBox).then(function (result) {
+        var filter = "";
+
+        if (vm.searchBox)
+          filter = vm.searchBox;
+
+        $http.get("http://localhost:9000/api/users/search/?nombre=" + filter).then(function (result) {
           var arrayUsuarios = [];
 
           result.data.usuarios.forEach(function(usuario) {
@@ -95,7 +100,7 @@
           });
         }
         else {
-          alert("woooooooops");
+          alert("you cannot delete a user with no id...");
         }
       }
     }
